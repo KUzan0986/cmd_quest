@@ -3,6 +3,27 @@ import mainСharacter
 import creatures
 
 
+def print_hero(hero):
+    print(" /==============================\\")
+    print(f"|{hero.name}\t |Жизнь\t{hero.health}\t\t|")
+    print(f"|\t |Золото\t{hero.gold}\t|")
+    print(f"|\t |Урон\t{hero.damage}\t\t|")
+    print(f"|\t |Зелья\t{hero.potions}\t\t|")
+    print(f"|\t |Уровень\t{hero.lvl}\t|")
+    print(f"|\t |Опыт\t{hero.exp}\t\t|")
+    print(f"|\t |LvlUp\t{95 + 5 * hero.lvl}\t\t|")
+    print(" \\==============================/ ")
+
+
+def print_enemy(enemy):
+    print("Ваш враг")
+    print(" /==============================\\")
+    print(f"|{enemy.name}\t |Жизнь\t{enemy.health}\t\t|")
+    print(f"|\t |Урон\t{enemy.damage}\t\t|")
+    print(" \\==============================/ ")
+    print("Attack\tPotion\tBuy")
+
+
 def start_game():
     while True:
         is_dead = False
@@ -12,22 +33,9 @@ def start_game():
             enemy = creatures.Enemy(hero)
             print(f"Появляется {enemy.name}!")
             while True:
-                print(" /==============================\\")
-                print(f"|{hero.name}\t |Жизнь\t{hero.health}\t\t|")
-                print(f"|\t |Золото\t{hero.gold}\t|")
-                print(f"|\t |Урон\t{hero.damage}\t\t|")
-                print(f"|\t |Зелья\t{hero.potions}\t\t|")
-                print(f"|\t |Уровень\t{hero.lvl}\t|")
-                print(f"|\t |Опыт\t{hero.exp}\t\t|")
-                print(f"|\t |LvlUp\t{95 + 5 * hero.lvl}\t\t|")
-                print(" \\==============================/ ")
+                print_hero(hero)
                 print()
-                print("Ваш враг")
-                print(" /==============================\\")
-                print(f"|{enemy.name}\t |Жизнь\t{enemy.health}\t\t|")
-                print(f"|\t |Урон\t{enemy.damage}\t\t|")
-                print(" \\==============================/ ")
-                print("Attack\tPotion\tBuy")
+                print_enemy(enemy)
                 comand = input("Введите команду: ")
                 if comand.capitalize() == "Attack":
                     hero.attack(enemy)
@@ -52,6 +60,7 @@ def start_game():
                 print("К сожалению, вы умерли...")
                 print(f"Вы убили монстров: {hero.monsters}!")
                 input("Для продолжения нажмите Enter")
+                os.system('cls||clear')
                 break
             os.system('cls||clear')
 
