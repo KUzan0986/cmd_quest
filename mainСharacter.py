@@ -1,5 +1,7 @@
+import creatures
+
 class Character:
-    def __init__(self, name, health=100, damage=10, gold=15):
+    def __init__(self, name):
         self.name = name
         self.health = 100
         self.damage = 10
@@ -14,3 +16,10 @@ class Character:
 
     def change_health(self, chealth=0):
         self.health += chealth
+
+    def change_potions(self, cpotions=0):
+        self.potions += cpotions
+
+    def attack(self, foe):
+        self.health -= foe.damage
+        foe.health -= self.damage
