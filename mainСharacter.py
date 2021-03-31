@@ -9,6 +9,7 @@ class Character:
         self.potions = 3
         self.exp = 0
         self.lvl = 1
+        self.monsters = 0
 
     def change_gold(self, cgold=0):
         self.gold += cgold
@@ -36,11 +37,18 @@ class Character:
     def add_lvl(self):
         self.health += 25
         self.damage += 5
-        self.exp = 0
         self.lvl += 1
 
     def add_exp(self, exp=0):
-        if self.exp+exp >= 100:
+        if self.exp+exp >= 95 + 5 * self.lvl:
             self.add_lvl()
+            self.exp=self.exp + exp - 100
         else:
             self.exp += exp
+
+    def buy(self):
+        if self.gold < 15:
+            print("Не хватает золота!")
+        else:
+            self.gold -= 15
+            self.potions +=1
