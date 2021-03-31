@@ -4,6 +4,7 @@ class Rat:
         self.health = 15
         self.damage = 1
         self.gold = 15
+        self.exp = 50
 
 
     def change_gold(self, cgold=0):

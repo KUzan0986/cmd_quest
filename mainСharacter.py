@@ -7,6 +7,8 @@ class Character:
         self.damage = 10
         self.gold = 15
         self.potions = 3
+        self.exp = 0
+        self.lvl = 1
 
     def change_gold(self, cgold=0):
         self.gold += cgold
@@ -23,3 +25,22 @@ class Character:
     def attack(self, foe):
         self.health -= foe.damage
         foe.health -= self.damage
+
+    def potion(self):
+        if self.potions == 0:
+            print("У тебя нет зелий")
+        else:
+            self.health += 20
+            self.potions -= 1
+
+    def add_lvl(self):
+        self.health += 25
+        self.damage += 5
+        self.exp = 0
+        self.lvl += 1
+
+    def add_exp(self, exp=0):
+        if self.exp+exp >= 100:
+            self.add_lvl()
+        else:
+            self.exp += exp
