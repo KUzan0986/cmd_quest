@@ -34,6 +34,7 @@ def start_game():
         print("Вы нашли", enemy.gold, "монет!")
         hero.change_gold(enemy.gold)
         input("Для продолжения нажмите Enter")
+        os.system('cls||clear')
 
 
 start_game()
