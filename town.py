@@ -3,7 +3,8 @@ import random
 
 class Town:
     list_of_town = [
-        "Emmett", "Idris", "Spock", "Aquila", "Nyota", "Teyla"
+        "Emmett Village", "Idris Town",
+        "Spock Farm", "Aquila City", "Nyota Town", "Teyla Farm"
     ]
 
     def __init__(self):
