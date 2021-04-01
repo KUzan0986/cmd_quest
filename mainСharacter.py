@@ -45,10 +45,3 @@ class Character:
             self.exp=self.exp + exp - 100
         else:
             self.exp += exp
-
-    def buy(self):
-        if self.gold < 15:
-            print("Не хватает золота!")
-        else:
-            self.gold -= 15
-            self.potions +=1
