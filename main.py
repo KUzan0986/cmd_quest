@@ -23,11 +23,11 @@ def print_enemy(enemy, hero):
     print(f"|{enemy.name}\t |Жизнь\t{enemy.health}\t\t|")
     print(f"|\t |Урон\t{enemy.damage}\t\t|")
     print(" \\==============================/ ")
-    print("Attack\tPotion")
+    print("Attack-1\tPotion-2")
     comand = input("Введите команду: ")
-    if comand.capitalize() == "Attack":
+    if comand.capitalize() == "1":
         hero.attack(enemy)
-    elif comand.capitalize() == "Potion":
+    elif comand.capitalize() == "2":
         hero.potion()
 
 
@@ -38,15 +38,15 @@ def print_town(town, hero):
     print(f"|\t УронUP |{town.pay_damage_up} золота\t|")
     print(f"|\t Зелья |{town.pay_buy_potion} золота\t|")
     print(" \\==============================/ ")
-    print("Healing\tDamage\tBuy\tExit")
+    print("Healing-1\tDamage-2\tBuy-3\tExit-0")
     comand = input("Введите команду: ")
-    if comand.capitalize() == "Healing":
+    if comand.capitalize() == "1":
         town.healing(hero)
-    elif comand.capitalize() == "Damage":
+    elif comand.capitalize() == "2":
         town.damage_up(hero)
-    elif comand.capitalize() == "Buy":
+    elif comand.capitalize() == "3":
         town.buy_potion(hero)
-    elif comand.capitalize() == "Exit":
+    elif comand.capitalize() == "0":
         town.exit = True
 
 
@@ -58,12 +58,15 @@ def print_encounter(encounter, hero):
 
 
 def start_game():
+
+    to_monster = True
     while True:
         is_dead = False
         name = input("Как зовут тебя, герой? ")
         hero = mainСharacter.Character(name)
         while True:
-            if random.randint(0, 10) in range(0, 8):
+
+            if to_monster:
                 encounter = creatures.Enemy(hero)
                 print(f"Появляется {encounter.name}!")
             else:
@@ -80,16 +83,29 @@ def start_game():
                 if isinstance(encounter, town.Town):
                     if encounter.exit:
                         input("Мы будем рады вас ждать снова!")
+                        to_monster = True
                         os.system('cls||clear')
                         break
                 if isinstance(encounter, creatures.Enemy):
                     if encounter.health <= 0:
                         print(encounter.name, "Побежден")
                         print("Вы нашли", encounter.gold, "монет!")
+                        print("Вы получили", encounter.exp, "опыта!")
                         hero.change_gold(encounter.gold)
                         hero.add_exp(encounter.exp)
                         hero.monsters += 1
-                        input("Для продолжения нажмите Enter")
+                        print("Бьёмся дальше или идем в город?")
+                        print("Fight-1\tTown-2")
+                        while True:
+                            comand = input("Введите команду:")
+                            if comand.capitalize() == "1":
+                                to_monster = True
+                                break
+                            elif comand.capitalize() == "2":
+                                to_monster = False
+                                break
+                            else:
+                                print("Не знаю такую команду")
                         os.system('cls||clear')
                         break
                 os.system('cls||clear')

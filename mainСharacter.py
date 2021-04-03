@@ -24,24 +24,25 @@ class Character:
         self.potions += cpotions
 
     def attack(self, foe):
-        self.health -= foe.damage
         foe.health -= self.damage
+        if foe.health > 0:
+            foe.attack(self)
 
     def potion(self):
         if self.potions == 0:
             print("У тебя нет зелий")
         else:
-            self.health += 20
+            self.health += 19 + 5 * self.lvl
             self.potions -= 1
 
     def add_lvl(self):
-        self.health += 25
-        self.damage += 5
+        self.health += 25 + self.lvl * 10
+        self.damage += 5 + self.lvl * 5
         self.lvl += 1
 
     def add_exp(self, exp=0):
         if self.exp+exp >= 95 + 5 * self.lvl:
+            self.exp = (self.exp + exp) - (95 + 5 * self.lvl)
             self.add_lvl()
-            self.exp=self.exp + exp - 100
         else:
             self.exp += exp

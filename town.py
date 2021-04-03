@@ -8,7 +8,7 @@ class Town:
     ]
 
     def __init__(self):
-        self.name = self.list_of_town[random.randint(0, len(self.list_of_town) - 1)]
+        self.name = random.choice(self.list_of_town)
         self.pay_healing = 15
         self.pay_damage_up = 20
         self.pay_buy_potion = 10

@@ -13,11 +13,11 @@ def set_damage(name, lvl):
 
 def set_health(name, lvl):
     if name in ["Rat"]:
-        health = random.randint(10, 15)*lvl
+        health = random.randint(10, 15) * lvl
     elif name in ["Goblin"]:
-        health = random.randint(20, 30)*lvl
+        health = random.randint(20, 30) * lvl
     elif name in ["Dragon"]:
-        health = random.randint(45, 60)*lvl
+        health = random.randint(45, 60) * lvl*2
     return health
 
 
@@ -46,17 +46,12 @@ class Enemy:
         "Rat", "Rat", "Rat", "Goblin", "Goblin", "Dragon"
     ]
 
-    import random
-    # list_of_enemyes = [
-    #         "Rat", "Goblin", "Dragon"
-    #     ]
-    #
-    #
-    # print(list_of_enemyes[random.randint(0, 2)])
-
     def __init__(self, hero):
-        self.name = self.list_of_enemyes[random.randint(0, len(self.list_of_enemyes)-1)]
+        self.name = random.choice(self.list_of_enemyes)
         self.health = set_health(self.name, hero.lvl)
         self.damage = set_damage(self.name, hero.lvl)
         self.gold = set_gold(self.name, hero.lvl)
         self.exp = set_exp(self.name, hero.lvl)
+
+    def attack(self, hero):
+        hero.health -= self.damage
