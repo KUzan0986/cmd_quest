@@ -42,7 +42,12 @@ class Character:
 
     def add_exp(self, exp=0):
         if self.exp+exp >= 95 + 5 * self.lvl:
-            self.exp = (self.exp + exp) - (95 + 5 * self.lvl)
-            self.add_lvl()
+            self.exp = self.exp + exp
+            while True:
+                if self.exp > 95 + 5 * self.lvl:
+                    self.exp -= 95 + 5 * self.lvl
+                    self.add_lvl()
+                else:
+                    break
         else:
             self.exp += exp

@@ -10,7 +10,7 @@ class Town:
     def __init__(self):
         self.name = random.choice(self.list_of_town)
         self.pay_healing = 15
-        self.pay_damage_up = 20
+        self.pay_damage_up = 3 + 3
         self.pay_buy_potion = 10
         self.exit = False
 
